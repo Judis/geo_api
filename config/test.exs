@@ -26,3 +26,5 @@ config :api, GeoApi.Guardian,
   verify_issuer: true,
   secret_key: "test",
   serializer: GeoApi.Guardian
+
+config :bcrypt_elixir, :log_rounds, 4

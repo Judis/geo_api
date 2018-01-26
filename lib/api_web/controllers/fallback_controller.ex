@@ -17,4 +17,10 @@ defmodule GeoApiWeb.FallbackController do
     |> put_status(:not_found)
     |> render(GeoApiWeb.ErrorView, :"404")
   end
+
+  def call(conn, {:error, :unauthorized}) do
+    conn
+    |> put_status(:unauthorized)
+    |> render(GeoApiWeb.ErrorView, :"401")
+  end
 end
