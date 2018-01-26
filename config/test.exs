@@ -17,3 +17,12 @@ config :api, GeoApi.Repo,
   database: "geo_api_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :api, GeoApi.Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "api",
+  ttl: { 30, :days },
+  verify_issuer: true,
+  secret_key: "test",
+  serializer: GeoApi.Guardian

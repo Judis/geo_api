@@ -42,7 +42,8 @@ defmodule GeoApi.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:excoveralls, "~> 0.8", only: :test},
-      {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:guardian, "~> 1.0"}
     ]
   end
 
