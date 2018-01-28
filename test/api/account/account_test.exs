@@ -94,5 +94,14 @@ defmodule GeoApi.AccountTest do
       assert user.email == "test1@test.com"
       assert user.name == "some name"
     end
+
+    test "find_and_confirm_user/2 returns the :unauthorized error if user is not found" do
+      assert {:error, :unauthorized} = Account.find_and_confirm_user("wrong_user@test.com", "wrong_password")
+    end
+
+    test "find_and_confirm_user/2 returns the :unauthorized error if password is incorect" do
+      user = user_fixture()
+      assert {:error, :unauthorized} = Account.find_and_confirm_user(user.email, "wrong_password")
+    end
   end
 end

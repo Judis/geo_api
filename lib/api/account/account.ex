@@ -117,7 +117,7 @@ defmodule GeoApi.Account do
   def find_and_confirm_user(email, password) do
     case Repo.get_by(User, email: email) do
       nil ->
-        {:error, :not_found}
+        {:error, :unauthorized}
       user ->
         if Comeonin.Bcrypt.checkpw(password, user.password_hash) do
           {:ok, user}

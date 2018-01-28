@@ -26,14 +26,6 @@ defmodule GeoApi.Account.User do
   end
 
   @doc false
-  def registration_changeset(%User{} = user, attrs) do
-    user
-    |> cast(attrs, [:email, :name, :password])
-    |> validate_required([:email, :name, :password])
-    |> validate_changeset
-  end
-
-  @doc false
   defp validate_changeset(struct) do
     struct
     |> validate_length(:email, min: 5, max: 255)
