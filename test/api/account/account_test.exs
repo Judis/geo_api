@@ -8,9 +8,9 @@ defmodule GeoApi.AccountTest do
 
     @valid_attrs %{email: "test1@test.com", name: "some name", password: "SomeNewPassw0rd"}
     @update_attrs %{email: "test2@test.com", name: "some updated name", password: "Some0therPa22word"}
-    @invalid_attrs %{email: nil, name: nil, password_hash: nil}
-    @invalid_email_attr %{email: "test", name: "some name", password_hash: "SomeNewPassw0rd"}
-    @invalid_password_attr %{email: "test1@test.com", name: "some name", password_hash: "password"}
+    @invalid_attrs %{email: nil, name: nil, password: nil}
+    @invalid_email_attr %{email: "test", name: "some name", password: "SomeNewPassw0rd"}
+    @invalid_password_attr %{email: "test1@test.com", name: "some name", password: "password"}
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =
@@ -90,6 +90,8 @@ defmodule GeoApi.AccountTest do
 
     test "find_and_confirm_user/2 returns the user with given email" do
       user = user_fixture()
+      assert {:error, :unauthorized} = Account.find_and_confirm_user(@invalid_email_attr.email, user.password)
+      assert {:error, :unauthorized} = Account.find_and_confirm_user(user.email, @invalid_password_attr.password)
       assert {:ok, %User{} = user} = Account.find_and_confirm_user(user.email, user.password)
       assert user.email == "test1@test.com"
       assert user.name == "some name"
