@@ -7,7 +7,6 @@ defmodule GeoApi.Account.User do
   import Ecto.Changeset
   alias GeoApi.Account.User
 
-
   schema "users" do
     field :email, :string
     field :name, :string
