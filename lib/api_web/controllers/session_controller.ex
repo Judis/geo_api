@@ -14,4 +14,8 @@ defmodule GeoApiWeb.SessionController do
       |> render("sign_in.json", user: user, jwt: jwt)
     end
   end
+
+  def sign_in(_conn, _args) do
+    {:error, :bad_request}
+  end
 end
