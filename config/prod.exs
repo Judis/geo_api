@@ -59,6 +59,16 @@ config :logger, level: :info
 #     config :api, GeoApiWeb.Endpoint, server: true
 #
 
-# Finally import the config/prod.secret.exs
+
+config :api, GeoApi.Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "api",
+  ttl: { 30, :days },
+  verify_issuer: true,
+  secret_key: System.get_env("GUARDIAN_SECRET_KEY"),
+  serializer: GeoApi.Guardian
+
+  # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
