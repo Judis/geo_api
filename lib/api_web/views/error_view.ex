@@ -1,6 +1,10 @@
 defmodule GeoApiWeb.ErrorView do
   use GeoApiWeb, :view
 
+  def render("400.json", _assigns) do
+    %{errors: %{detail: "Bad Request"}}
+  end
+
   def render("401.json", _assigns) do
     %{errors: %{detail: "Unauthorized"}}
   end

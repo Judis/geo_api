@@ -14,4 +14,8 @@ defmodule GeoApiWeb.RegistrationController do
       |> render("success.json", user: user)
     end
   end
+
+  def sign_up(_conn, _args) do
+    {:error, :bad_request}
+  end
 end

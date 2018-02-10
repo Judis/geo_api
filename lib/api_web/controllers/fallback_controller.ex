@@ -18,6 +18,12 @@ defmodule GeoApiWeb.FallbackController do
     |> render(GeoApiWeb.ErrorView, :"404")
   end
 
+  def call(conn, {:error, :bad_request}) do
+    conn
+    |> put_status(:bad_request)
+    |> render(GeoApiWeb.ErrorView, :"400")
+  end
+
   def call(conn, {:error, :unauthorized}) do
     conn
     |> put_status(:unauthorized)
